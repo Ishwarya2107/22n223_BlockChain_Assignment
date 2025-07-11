@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Blockchain Node</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+           
+            color: #333;
+        }
+        .block {
+            border: 1px solid #ccc;
+            background-color: #ACD3A8;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 10px;
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.05);
+            width: 850px;
+        }
+     
+        input {
+            margin: 5px 0;
+            padding: 8px;
+            width: 100%;
+            max-width: 300px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #3E3F5B;
+            color: white;
+            padding: 8px 15px;
+            margin-top: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #1a5ed8;
+        }
+        h1, h2 {
+            color: #2b2b2b;
+        }
+    </style>
+</head>
+<body>
+    <h1>Blockchain Node (Port {{ request.host.split(':')[1] }})</h1>
+
+    <h2>Chain Copy</h2>
+    {% for block in chain %}
+        <div class="block">
+            <p><b>Block:</b> {{ block.index }}</p>
+          
+            <p><b>Transactions:</b> {{ block.transactions }}</p>
+            <p><b>Nonce:</b> {{ block.proof }}</p>
+            <p><b>Previous Hash:</b> {{ block['previous_hash'] }}</p>
+            <p><b>Hash:</b> {{ block['hash'] }}</p>
+        </div>
+    {% endfor %}
+  <h2>Step - 1: Register Node</h2>
+    <form action="/register_node" method="post">
+        Node URL: <input name="node">
+        <button type="submit">Register</button>
+    </form>
+    <h2>Step - 2: Add Transaction</h2>
+    <form action="/add_transaction" method="post">
+        Sender   :   <input name="sender"><br>
+        Receiver : <input name="receiver"><br>
+        Amount   :   <input name="amount"><br>
+        <button type="submit">Add Transaction</button> 
+    </form>
+
+    <h2>Step - 3: Mine Block (Adds transaction to blockchain)</h2>
+    <form action="/mine" method="post">
+        <button type="submit">Mine</button>
+    </form>
+
+  
+
+    <h2>Step - 4: Run Consensus (Ensures all nodes share same chain)</h2>
+    <form action="/consensus" method="post">
+        <button type="submit">Resolve Conflict</button>
+    </form>
+
+    <h2>List of Peers:</h2>
+    <ul>
+        {% for peer in peers %}
+            <li>{{ peer }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

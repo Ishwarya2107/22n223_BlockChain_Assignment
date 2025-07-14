@@ -43,8 +43,9 @@ Click "Resolve Conflict" to sync chains with other peers.
 See the chain and peers listed on the homepage.
 ## Demo video
 <a href="https://www.youtube.com/watch?v=MoFDihKRCxE">
-  <img src="https://i9.ytimg.com/vi/MoFDihKRCxE/maxresdefault.jpg?v=6873b4f7&sqp=CITszsMG&rs=AOn4CLBrW7tWvsLuA1fGQlf0YEQ1soH0rQ" width="400"/>
+  <img src="https://img.youtube.com/vi/MoFDihKRCxE/maxresdefault.jpg" width="400"/>
 </a>
+
 
 ## Endpoints
 **GET /chain** — Returns the full blockchain  
